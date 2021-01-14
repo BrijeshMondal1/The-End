@@ -21,15 +21,15 @@ var rockDestroy;
 //loding the images
 function preload(){
   
-  monkey_running =            loadAnimation("sprite_0.png","sprite_1.png","sprite_2.png","sprite_3.png","sprite_4.png","sprite_5.png","sprite_6.png","sprite_7.png","sprite_8.png")
+  monkey_running = loadAnimation("monkey/sprite_0.png","monkey/sprite_1.png","monkey/sprite_2.png","monkey/sprite_3.png","monkey/sprite_4.png","monkey/sprite_5.png","monkey/sprite_6.png","monkey/sprite_7.png","monkey/sprite_8.png");
   monkeySound = loadSound("monkey.mp3");
-  bananaImage = loadImage("banana.png");
-  obstacleImage = loadImage("obstacle.png");
-  grassImage = loadImage("grass-.png");
+  bananaImage = loadImage("images/banana.png");
+  obstacleImage = loadImage("images/obstacle.png");
+  grassImage = loadImage("images/grass-.png");
   gameOverSound = loadSound("gameover.mp3");
   gameWinSound = loadSound("game_win.mp3");
-  forestImage = loadImage("forest.png");
-  monkeyEnd = loadAnimation("sprite_0.png");
+  forestImage = loadImage("images/forest.png");
+  monkeyEnd = loadAnimation("monkey/sprite_0.png");
   levelUp = loadSound("level_up.mp3");
   rockDestroy = loadSound("rock_crash.mp3");
   
@@ -39,10 +39,7 @@ function preload(){
 //creating sprites and groups
 function setup() {
  createCanvas(500,450);
-  
-  //creating the background
 
- 
   //creating the monkey
   monkey = createSprite(80,400);
   monkey.addAnimation("monkey",monkey_running);
@@ -50,6 +47,9 @@ function setup() {
   monkey.scale = 0.18;
   monkey.setCollider("rectangle",0,0,500,600);
   monkey.debug = false;
+
+  camera.x = 200;
+  camera.y = 230;
 
   //creating the invisible ground
   invisibleGround = createSprite(80,460,150,20);
@@ -65,7 +65,7 @@ function setup() {
 //adding functions to the objects
 function draw() {
   //clearing the screen
-  background("skyblue");
+  background(forestImage);
 
 if(gameState === START || gameState === PLAY){  
 
@@ -174,7 +174,6 @@ if(gameState === START || gameState === PLAY){
     text("SURVIVAL TIME : " + time,200,30);
     fill("orangered")
     text("SCORE : " + score + " / 10",215,50);
-    console.log("fruitLeft : " + fruitLeft);
 }
   
   if(gameState === END){
